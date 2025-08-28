@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>Network Security MVP</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" href="styles.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/luxon@3/build/global/luxon.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon@1"></script>
+</head>
+<body>
+  <header>
+    <h1>Network Security MVP Dashboard</h1>
+  </header>
+
+  <main>
+    <section class="cards">
+      <div class="card">
+        <div class="card-title">Active Threats - 24hr</div>
+        <div class="card-value" id="activeThreats">—</div>
+        <div class="card-sub" id="activeThreatsChange">—</div>
+      </div>
+      <div class="card">
+        <div class="card-title">ML Model Accuracy</div>
+        <div class="card-value" id="modelAccuracy">—</div>
+        <div class="card-sub" id="accuracyTrend">—</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Data Coverage</div>
+        <div class="card-value" id="dataCoverage">—</div>
+        <div class="card-sub" id="dataVolume">—</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Response Time</div>
+        <div class="card-value" id="responseTime">—</div>
+        <div class="card-sub" id="autoRem">—</div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="panel">
+        <h2>MITRE ATT&CK Heatmap</h2>
+        <div id="heatmap" class="heatmap"></div>
+      </div>
+
+      <div class="panel">
+        <h2>MITRE ATT&CK Tactic Graph</h2>
+        <canvas id="mitreGraph"></canvas>
+      </div>
+
+      <div class="panel">
+        <h2>Model Performance (7d)</h2>
+        <canvas id="modelPerf"></canvas>
+      </div>
+
+      <div class="panel">
+        <h2>Assets (Active)</h2>
+        <table id="assetsTable">
+          <thead><tr><th>Asset ID</th><th>Hostname</th><th>IP</th><th>Timestamp</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <div class="panel">
+        <h2>User Sessions</h2>
+        <table id="sessionsTable">
+          <thead><tr><th>Time</th><th>Owner</th><th>Host</th><th>IP</th><th>Trust</th><th>Risk</th><th>Decision</th><th>Anom</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <div class="panel wide">
+        <h2>Correlation & Reasoning</h2>
+        <table id="corrTable">
+          <thead><tr><th>Time</th><th>Record</th><th>Correlation ID</th><th>Top Feature</th><th>Score</th><th>Note</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- Floating chat button -->
+  <div id="chat-button" class="chat-button">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
+      <path d="M20 2H4C2.9 2 2 2.9 2 4v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-5 13H9v-2h6v2zm3-3H6V7h12v5zM12 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2zM9 9h.01V9h-.01zM15 9h.01V9h-.01z" />
+    </svg>
+  </div>    <!-- Chat popup -->
+  <div id="chat-container" class="chat-container">
+    <div class="chat-header">
+      <span>AI Chat Assistant</span>
+      <button id="close-chat-btn">&times;</button>
+    </div>
+    <div class="chat-log" id="popup-chat-log"></div>
+    <div class="chat-input">
+      <input id="popup-chat-text" type="text" placeholder="Ask about threats, assets..."/>
+      <button id="popup-send-btn">Send</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
